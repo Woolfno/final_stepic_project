@@ -14,4 +14,4 @@ class LoginPageLocators():
     REGISTRATION_EMAIL = (By.ID, 'id_registration-email')
     REGISTRATION_PASSWORD1 = (By.ID, 'id_registration-password1')
     REGISTRATION_PASSWORD2 = (By.ID, 'id_registration-password2')
-    REGISTRATION_SUBMIT = (By.ID, 'registration_submit')
+    REGISTRATION_SUBMIT = (By.NAME, 'registration_submit')
