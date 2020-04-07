@@ -15,3 +15,11 @@ class LoginPageLocators():
     REGISTRATION_PASSWORD1 = (By.ID, 'id_registration-password1')
     REGISTRATION_PASSWORD2 = (By.ID, 'id_registration-password2')
     REGISTRATION_SUBMIT = (By.NAME, 'registration_submit')
+
+class ProductPageLocators():
+    BUTTON_ADD_TO_BASKET = (By.CLASS_NAME, 'btn-add-to-basket')
+    PRODUCT_NAME = (By.CSS_SELECTOR, '.product_main h1')
+    PRODUCT_PRICE = (By.CSS_SELECTOR, '.product_main .price_color')    
+    MESSAGE_ADD_TO_BASKET = (By.XPATH, "//div[contains(@class,'alert')][1]/div")
+    MESSAGE_AMOUNT_BASKET = (By.XPATH, "//div[contains(@class,'alert')][3]//p")
+    BASKET_TOTAL = (By.XPATH, "//div[contains(@class,'alert')][3]//strong")
