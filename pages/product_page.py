@@ -8,6 +8,9 @@ class ProductPage(BasePage):
     def add_product_to_basket(self):
         add_button = self.browser.find_element(*ProductPageLocators.BUTTON_ADD_TO_BASKET)
         add_button.click()
+
+    def add_promo_product_to_basket(self):
+        self.add_product_to_basket()
         self.solve_quiz_and_get_code()
 
     def get_product_name(self):
@@ -16,14 +19,26 @@ class ProductPage(BasePage):
     def get_price(self):
         return self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text
 
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.MESSAGE_ADD_TO_BASKET),\
+            "Success message is presented, but should not be"
+
+    def should_disappeared_success_message(self):
+        assert self.is_disappeared(*ProductPageLocators.MESSAGE_ADD_TO_BASKET),\
+            "Success message is presented, but should disappeared"
+
     def should_be_message_add_to_basket(self):
-        assert self.is_element_present(*ProductPageLocators.MESSAGE_ADD_TO_BASKET), "Messsage about add product is not present"
+        assert self.is_element_present(*ProductPageLocators.MESSAGE_ADD_TO_BASKET),\
+            "Messsage about add product is not present"
 
         message = self.browser.find_element(*ProductPageLocators.MESSAGE_ADD_TO_BASKET).get_attribute("innerHTML").strip()        
-        assert self.__class__.MESSAGE_SUCCESS_PRODUCT_ADD.format(product=self.get_product_name())==message, "Product does not in message"
+        assert self.__class__.MESSAGE_SUCCESS_PRODUCT_ADD.format(product=self.get_product_name())==message,\
+            "Product does not in message"
 
     def should_be_message_amount_basket(self):
-        assert self.is_element_present(*ProductPageLocators.MESSAGE_AMOUNT_BASKET), "Message about amount basket is not present"
+        assert self.is_element_present(*ProductPageLocators.MESSAGE_AMOUNT_BASKET),\
+            "Message about amount basket is not present"
 
         amount = self.browser.find_element(*ProductPageLocators.BASKET_TOTAL).text
-        assert self.get_price()==amount, "The cost of the basket does not match the price of the product"
+        assert self.get_price()==amount,\
+            "The cost of the basket does not match the price of the product"
